@@ -29,3 +29,10 @@ topics of ruby on rails
 
   NOTE : download any database for your application. (Postgres sql)
 
+# Day-7
+
+## object Hierarchy
+## respond_to method
+## class.ancestors
+## Base class,Child class
+## Super keyword
