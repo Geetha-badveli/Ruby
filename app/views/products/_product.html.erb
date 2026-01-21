@@ -1,0 +1,263 @@
+<!-- filepath: c:\Users\vunde\Desktop\Ruby\demo-app\app\views\products\_product.html.erb -->
+<div id="<%= dom_id product %>" class="product-card-content">
+  <div class="product-header">
+    <div class="product-name-section">
+      <h3 class="product-name"><%= product.name %></h3>
+      <span class="product-status <%= product.is_active ? 'active' : 'inactive' %>">
+        <%= product.is_active ? '● Active' : '● Inactive' %>
+      </span>
+    </div>
+  </div>
+
+  <div class="product-details">
+    <% if product.description.present? %>
+      <div class="detail-item">
+        <span class="detail-label">Description</span>
+        <p class="detail-value description"><%= product.description %></p>
+      </div>
+    <% end %>
+
+    <div class="detail-row">
+      <div class="detail-item">
+        <span class="detail-label">Price</span>
+        <span class="detail-value price-value">$<%= number_with_precision(product.price, precision: 2) %></span>
+      </div>
+
+      <div class="detail-item">
+        <span class="detail-label">Stock Level</span>
+        <span class="detail-value stock-value">
+          <%= product.stock %>
+          <span class="stock-unit">units</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-actions">
+    <%= link_to "View", product_path(product), class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_product_path(product), class: "btn btn-secondary" %>
+    <%= link_to "Delete", product_path(product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
+</div>
+
+<style>
+  .product-card-content {
+    padding: 24px;
+    background-color: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .product-card-content:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-header {
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .product-name-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .product-name {
+    margin: 0;
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 700;
+    word-break: break-word;
+    flex: 1;
+  }
+
+  .product-status {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .product-status.active {
+    color: #065f46;
+    background-color: #d1fae5;
+  }
+
+  .product-status.inactive {
+    color: #7f1d1d;
+    background-color: #fee2e2;
+  }
+
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .detail-label {
+    display: block;
+    color: #9ca3af;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .detail-value {
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 600;
+    word-break: break-word;
+  }
+
+  .detail-value.description {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4b5563;
+    max-height: 80px;
+    overflow-y: auto;
+  }
+
+  .price-value {
+    font-size: 18px;
+    color: #667eea;
+    font-weight: 700;
+  }
+
+  .stock-value {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stock-unit {
+    font-size: 11px;
+    color: #9ca3af;
+    font-weight: 500;
+    text-transform: lowercase;
+  }
+
+  .product-actions {
+    display: flex;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    height: 40px;
+    outline: none;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    background-color: #667eea;
+    color: #ffffff;
+    border: 2px solid #667eea;
+  }
+
+  .btn-primary:hover {
+    background-color: #5568d3;
+    border-color: #5568d3;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: 2px solid #d1d5db;
+  }
+
+  .btn-secondary:hover {
+    background-color: #d1d5db;
+    border-color: #9ca3af;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-danger {
+    background-color: #f87171;
+    color: #ffffff;
+    border: 2px solid #f87171;
+  }
+
+  .btn-danger:hover {
+    background-color: #ef4444;
+    border-color: #ef4444;
+    box-shadow: 0 2px 6px rgba(248, 113, 113, 0.3);
+  }
+
+  .btn-danger:active {
+    transform: scale(0.98);
+  }
+
+  @media (max-width: 768px) {
+    .product-card-content {
+      padding: 20px;
+      gap: 14px;
+    }
+
+    .product-name-section {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .product-name {
+      font-size: 16px;
+    }
+
+    .detail-row {
+      grid-template-columns: 1fr;
+    }
+
+    .product-actions {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -1,0 +1,140 @@
+/* Page wrapper */
+.customers-page {
+  padding: 24px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Flash notice */
+.flash-notice {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+/* Grid layout – 4 per row */
+.customers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Customer card */
+.customer-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.customer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Actions */
+.customer-actions {
+  margin-top: 16px;
+  text-align: right;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+}
+
+.btn-secondary {
+  background-color: #eef2ff;
+  color: #1d4ed8;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e7ff;
+}
+
+/* Empty state */
+.empty-state {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  color: #475569;
+}
+
+/* Form page background */
+.form-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f1f5f9, #e0e7ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Form card */
+.form-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.form-header h1 {
+  font-size: 26px;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+/* Footer */
+.form-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.back-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

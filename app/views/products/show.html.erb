@@ -1,0 +1,257 @@
+<% content_for :title, @product.name %>
+
+<div class="show-container">
+  <% if notice %>
+    <div class="alert alert-success">
+      <div class="alert-content">
+        <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <p class="alert-message"><%= notice %></p>
+      </div>
+      <button class="alert-close" onclick="this.parentElement.style.display='none';">&times;</button>
+    </div>
+  <% end %>
+
+  <div class="show-header">
+    <div class="show-header-content">
+      <div class="show-breadcrumbs">
+        <span class="breadcrumb-item"><%= link_to "Products", products_path %></span>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current"><%= @product.name %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="show-content">
+    <div class="show-product-wrapper">
+      <%= render @product %>
+    </div>
+  </div>
+
+  <div class="show-footer">
+    <div class="show-actions">
+      <%= link_to "Edit", edit_product_path(@product), class: "btn btn-primary" %>
+      <%= link_to "Back", products_path, class: "btn btn-secondary" %>
+      <%= button_to "Delete", @product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .show-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .alert {
+    padding: 16px 20px;
+    margin: 0;
+    border-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .alert-success {
+    background-color: #d1fae5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
+  }
+
+  .alert-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .alert-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .alert-message {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .alert-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+    margin-left: 12px;
+  }
+
+  .alert-close:hover {
+    opacity: 1;
+  }
+
+  .show-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 32px;
+    color: #ffffff;
+  }
+
+  .show-header-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .show-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb-item {
+    font-size: 13px;
+  }
+
+  .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-item a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 4px;
+  }
+
+  .breadcrumb-current {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+  }
+
+  .show-content {
+    padding: 40px 32px;
+  }
+
+  .show-product-wrapper {
+    background: #f9fafb;
+    padding: 28px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .show-footer {
+    padding: 24px 32px;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .show-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .btn {
+    display: inline-flex;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    background-color: #667eea;
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: #5568d3;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .btn-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+  }
+
+  .btn-secondary:hover {
+    background-color: #d1d5db;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-danger {
+    background-color: #f87171;
+    color: #ffffff;
+  }
+
+  .btn-danger:hover {
+    background-color: #ef4444;
+    box-shadow: 0 2px 8px rgba(248, 113, 113, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .show-container {
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .show-header {
+      padding: 24px 16px;
+    }
+
+    .show-content {
+      padding: 24px 16px;
+    }
+
+    .show-product-wrapper {
+      padding: 16px;
+    }
+
+    .show-footer {
+      padding: 16px;
+    }
+
+    .show-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+</style>

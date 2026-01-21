@@ -1,0 +1,458 @@
+<% content_for :title, "Customers" %>
+
+<div class="customers-page">
+  <div class="page-header">
+    <div class="header-content">
+      <div>
+        <h1 class="page-title">
+          <span class="title-icon">👥</span>
+          Customers
+        </h1>
+        <p class="page-subtitle">Manage your customer database</p>
+      </div>
+
+      <%= link_to "New Customer", new_customer_path, class: "btn-primary" %>
+    </div>
+  </div>
+
+  <% if notice.present? %>
+    <div class="flash-notice success-notice">
+      <span class="notice-icon">✓</span>
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if @customers.any? %>
+    <div id="customers" class="customers-grid">
+      <% @customers.each do |customer| %>
+        <div class="customer-card-wrapper">
+          <div class="customer-card">
+            <%= render customer %>
+
+            <div class="customer-actions">
+              <%= link_to "View profile", customer, class: "btn-secondary" %>
+              <%= link_to "Edit", edit_customer_path(customer), class: "btn-edit" %>
+              <%= link_to "Delete", customer, method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-state">
+      <div class="empty-icon">📭</div>
+      <h3>No customers yet</h3>
+      <p>Create your first customer to get started.</p>
+      <%= link_to "Add Customer Now", new_customer_path, class: "btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .customers-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .page-header {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 36px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25);
+    gap: 30px;
+  }
+
+  .page-title {
+    margin: 0 0 12px 0;
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .title-icon {
+    font-size: 42px;
+    line-height: 1;
+  }
+
+  .page-subtitle {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 14px 40px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    height: 50px;
+    min-width: 200px;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(245, 87, 108, 0.45);
+  }
+
+  .btn-primary:active {
+    transform: translateY(-1px);
+  }
+
+  .flash-notice {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 30px;
+    padding: 18px 24px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+    font-size: 14px;
+    animation: slideIn 0.3s ease;
+  }
+
+  .success-notice {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-left: 5px solid #10b981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+  }
+
+  .notice-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .customers-grid {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 28px;
+  }
+
+  .customer-card-wrapper {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .customer-card-wrapper:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  .customer-card-wrapper:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .customer-card-wrapper:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .customer-card {
+    background-color: white;
+    border-radius: 14px;
+    padding: 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border-top: 5px solid #667eea;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .customer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .customer-actions {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    background-color: #f8f9fb;
+    border-top: 1px solid #e5e7eb;
+    margin-top: auto;
+  }
+
+  .btn-secondary,
+  .btn-edit,
+  .btn-delete {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .btn-secondary {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    color: white;
+    box-shadow: 0 3px 12px rgba(6, 182, 212, 0.25);
+  }
+
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(6, 182, 212, 0.35);
+  }
+
+  .btn-edit {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    box-shadow: 0 3px 12px rgba(139, 92, 246, 0.25);
+  }
+
+  .btn-edit:hover {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(139, 92, 246, 0.35);
+  }
+
+  .btn-delete {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 3px 12px rgba(239, 68, 68, 0.25);
+  }
+
+  .btn-delete:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(239, 68, 68, 0.35);
+  }
+
+  .empty-state {
+    width: 100%;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 80px 40px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .empty-icon {
+    font-size: 80px;
+    line-height: 1;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .empty-state h3 {
+    margin: 0 0 16px 0;
+    color: #1f2937;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .empty-state p {
+    margin: 0 0 32px 0;
+    color: #6b7280;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .empty-state .btn-primary {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .customers-grid {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 100%;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      font-size: 28px;
+    }
+
+    .header-content {
+      padding: 32px 28px;
+      min-height: 100px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .customers-page {
+      padding: 20px 16px;
+    }
+
+    .page-header {
+      margin-bottom: 28px;
+    }
+
+    .header-content {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+      padding: 28px 20px;
+      min-height: auto;
+    }
+
+    .page-title {
+      font-size: 24px;
+      justify-content: center;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      min-width: unset;
+      height: 48px;
+    }
+
+    .customers-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 0;
+    }
+
+    .customer-actions {
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px;
+    }
+
+    .btn-secondary,
+    .btn-edit,
+    .btn-delete {
+      height: 44px;
+      min-height: 44px;
+    }
+
+    .empty-state {
+      padding: 60px 24px;
+      margin: 40px auto;
+    }
+
+    .empty-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+      font-size: 22px;
+    }
+
+    .empty-state p {
+      font-size: 15px;
+    }
+
+    .flash-notice {
+      margin: 0 auto 24px;
+      padding: 16px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .customers-page {
+      padding: 16px 12px;
+    }
+
+    .page-title {
+      font-size: 20px;
+      gap: 10px;
+    }
+
+    .title-icon {
+      font-size: 28px;
+    }
+
+    .btn-primary {
+      padding: 12px 24px;
+      font-size: 12px;
+    }
+
+    .empty-state {
+      padding: 48px 20px;
+    }
+
+    .empty-icon {
+      font-size: 56px;
+    }
+  }
+</style>

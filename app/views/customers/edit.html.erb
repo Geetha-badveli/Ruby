@@ -1,0 +1,150 @@
+<% content_for :title, "Editing customer" %>
+
+<div class="edit-container">
+  <div class="edit-header">
+    <h1 class="edit-title">
+      <span class="edit-icon">✏️</span>
+      Editing Customer
+    </h1>
+    <p class="edit-subtitle">Update customer information</p>
+  </div>
+
+  <div class="edit-form-wrapper">
+    <%= render "form", customer: @customer %>
+  </div>
+
+  <div class="edit-actions">
+    <%= link_to "Show this customer", @customer, class: "action-link show-link" %>
+    <span class="link-separator">•</span>
+    <%= link_to "Back to customers", customers_path, class: "action-link back-link" %>
+  </div>
+</div>
+
+<style>
+  .edit-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    min-height: 100vh;
+  }
+
+  .edit-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 32px 28px;
+    margin-bottom: 32px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  }
+
+  .edit-title {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .edit-icon {
+    font-size: 32px;
+  }
+
+  .edit-subtitle {
+    margin: 0;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+  }
+
+  .edit-form-wrapper {
+    background-color: white;
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  .edit-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .action-link {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .show-link {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+  }
+
+  .show-link:hover {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
+  }
+
+  .back-link {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  .back-link:hover {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+  }
+
+  .link-separator {
+    color: #d1d5db;
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .edit-container {
+      padding: 16px;
+    }
+
+    .edit-header {
+      padding: 24px 20px;
+      margin-bottom: 24px;
+    }
+
+    .edit-title {
+      font-size: 22px;
+    }
+
+    .edit-actions {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .action-link {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .link-separator {
+      display: none;
+    }
+  }
+</style>

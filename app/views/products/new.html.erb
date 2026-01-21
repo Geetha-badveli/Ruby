@@ -1,0 +1,201 @@
+<% content_for :title, "New product" %>
+
+<div class="new-container">
+  <div class="new-header">
+    <div class="new-header-content">
+      <div class="new-title-section">
+        <h1 class="new-page-title">Create New Product</h1>
+        <p class="new-page-subtitle">Add a new product to your catalog</p>
+      </div>
+      <div class="new-breadcrumbs">
+        <span class="breadcrumb-item"><%= link_to "Products", products_path %></span>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">New</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="new-content">
+    <div class="new-form-wrapper">
+      <%= render "form", product: @product %>
+    </div>
+  </div>
+
+  <div class="new-footer">
+    <div class="new-actions">
+      <%= link_to "Back to Products", products_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .new-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .new-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 32px;
+    color: #ffffff;
+  }
+
+  .new-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .new-title-section {
+    flex: 1;
+  }
+
+  .new-page-title {
+    margin: 0 0 8px 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .new-page-subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  .new-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .breadcrumb-item {
+    font-size: 13px;
+  }
+
+  .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-item a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 4px;
+  }
+
+  .breadcrumb-current {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+  }
+
+  .new-content {
+    padding: 40px 32px;
+  }
+
+  .new-form-wrapper {
+    background: #f9fafb;
+    padding: 28px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .new-footer {
+    padding: 24px 32px;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .new-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .btn-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+  }
+
+  .btn-secondary:hover {
+    background-color: #d1d5db;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .new-container {
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .new-header {
+      padding: 24px 16px;
+    }
+
+    .new-header-content {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .new-breadcrumbs {
+      justify-content: flex-start;
+    }
+
+    .new-page-title {
+      font-size: 24px;
+    }
+
+    .new-content {
+      padding: 24px 16px;
+    }
+
+    .new-form-wrapper {
+      padding: 16px;
+    }
+
+    .new-footer {
+      padding: 16px;
+    }
+
+    .new-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+</style>

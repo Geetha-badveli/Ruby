@@ -1,0 +1,37 @@
+<!-- filepath: c:\Users\vunde\Desktop\Ruby\demo-app\app\views\customers\_customer.html.erb -->
+<div id="<%= dom_id customer %>" class="customer-card-content">
+  <div class="customer-info">
+    <h3 class="customer-name"><%= customer.name %></h3>
+    <p class="customer-email"><%= customer.email %></p>
+  </div>
+</div>
+
+<style>
+  .customer-card-content {
+    padding: 20px;
+    background-color: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .customer-info {
+    min-width: 0;
+  }
+
+  .customer-name {
+    margin: 0 0 8px 0;
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 700;
+    word-break: break-word;
+  }
+
+  .customer-email {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+    word-break: break-all;
+  }
+</style>

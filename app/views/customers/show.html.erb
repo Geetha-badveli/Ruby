@@ -1,0 +1,235 @@
+<% content_for :title, "Customer Details" %>
+
+<div class="show-page-container">
+  <% if notice.present? %>
+    <div class="flash-notice success-notice">
+      <span class="notice-icon">✓</span>
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div class="show-card">
+    <div class="show-header">
+      <h1 class="show-title">
+        <span class="show-icon">👤</span>
+        Customer Details
+      </h1>
+    </div>
+
+    <div class="show-content">
+      <%= render @customer %>
+    </div>
+
+    <div class="show-actions">
+      <%= link_to "Edit this customer", edit_customer_path(@customer), class: "action-btn edit-btn" %>
+      <%= link_to "Back to customers", customers_path, class: "action-btn back-btn" %>
+      <%= button_to "Delete customer", @customer, method: :delete, data: { confirm: "Are you sure?" }, class: "action-btn delete-btn" %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .show-page-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .flash-notice {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    animation: slideIn 0.3s ease;
+  }
+
+  .success-notice {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-left: 5px solid #10b981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+  }
+
+  .notice-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .show-card {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .show-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 36px;
+    color: white;
+  }
+
+  .show-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .show-icon {
+    font-size: 32px;
+  }
+
+  .show-content {
+    padding: 40px 36px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .show-actions {
+    padding: 24px 36px;
+    background-color: #f9fafb;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .action-btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 140px;
+  }
+
+  .edit-btn {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  .edit-btn:hover {
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+  }
+
+  .back-btn {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+  }
+
+  .back-btn:hover {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
+  }
+
+  .delete-btn {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  }
+
+  .delete-btn:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .show-page-container {
+      padding: 20px 16px;
+    }
+
+    .show-card {
+      border-radius: 12px;
+    }
+
+    .show-header {
+      padding: 32px 24px;
+    }
+
+    .show-title {
+      font-size: 24px;
+    }
+
+    .show-content {
+      padding: 32px 24px;
+    }
+
+    .show-actions {
+      padding: 20px 24px;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-btn {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .show-page-container {
+      padding: 16px 12px;
+    }
+
+    .show-header {
+      padding: 24px 20px;
+    }
+
+    .show-title {
+      font-size: 20px;
+    }
+
+    .show-content {
+      padding: 24px 20px;
+    }
+
+    .show-actions {
+      padding: 16px 20px;
+    }
+
+    .action-btn {
+      padding: 10px 20px;
+      font-size: 12px;
+      min-height: 40px;
+    }
+  }
+</style>
