@@ -4,7 +4,8 @@ class Customer < ApplicationRecord
  validates :email, absence:false
  
  validates :name, format: {with: /\A[a-zA-Z]+\z/,message: "only letters are allowed"}
-
+validates :name, profanity: true
+validates :email, profanity: true
   
 # validates :name, presence:true
 # validates :name, uniqueness:true
