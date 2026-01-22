@@ -1,4 +1,7 @@
 <%= form_with(model: customer) do |form| %>
+<% # it is a rails method helper method, is some other ways to write forms 
+# form_for
+# simple_form%>
   <div class="customer-form">
     <% if customer.errors.any? %>
       <div class="error-container">
@@ -17,7 +20,7 @@
 
     <div class="form-group">
       <%= form.label :name, class: "form-label" %>
-      <%= form.text_field :name, class: "form-input", placeholder: "Enter customer name" %>
+      <%= form.text_field :name, class: "form-input", placeholder: "Enter customer name" ,maxlength: 10 ,minlength: 4 %>
     </div>
 
     <div class="form-group">

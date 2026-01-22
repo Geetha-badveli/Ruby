@@ -1,4 +1,14 @@
 class Customer < ApplicationRecord
+ validates :email, presence:true
+ validates :email, uniqueness:true
+ validates :email, absence:false
+ 
+ validates :name, format: {with: /\A[a-zA-Z]+\z/,message: "only letters are allowed"}
+
+  
+# validates :name, presence:true
+# validates :name, uniqueness:true
+    
     def check_email
         # it is present are not
         if email.present?

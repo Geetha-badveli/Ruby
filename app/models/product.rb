@@ -1,4 +1,9 @@
 class Product < ApplicationRecord
+#validates :stock, numericality: true
+#validates :stock, length:{ minimum: 10,maximum: 20}
+#validates :description, length: { maximum: 5}
+validates :price, numericality:{ greater_than_or_equal_to: 3}
+validate :check_price
     def self.limit_with_active
         Product.all.limit(10).select{|n| n.is_active=true}
     end
@@ -22,5 +27,11 @@ class Product < ApplicationRecord
        else
         return "product not available"
        end
+    end
+    #custom exceptions
+    def check_price
+        if stock==0 && price>0
+            errors.add "stock must be greaterthan 0"
+        end  
     end
 end
