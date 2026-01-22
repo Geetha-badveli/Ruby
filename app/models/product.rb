@@ -69,8 +69,4 @@ validate :check_description
           errors.add(:description, "must not contain special characters")
         end
     end
-
-
-    
-
 end

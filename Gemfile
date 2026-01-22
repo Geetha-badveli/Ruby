@@ -67,3 +67,5 @@ end
 
 #new gems
 gem "faker"
+gem 'obscenity'
+gem 'moderate'
